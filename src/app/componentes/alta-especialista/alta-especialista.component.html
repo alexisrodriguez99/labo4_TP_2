@@ -1,0 +1,109 @@
+ 
+
+    <!-- Bootstrap core CSS --> 
+    <!-- Custom styles for this template -->
+    <br>
+
+   
+      <div class="container">
+         
+  
+        <div class="row">
+           
+          <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+              <span class="text-muted">ESPECIALIDAD</span>
+               
+            </h4> 
+   <app-especialidades (unaEspecialidad)="paisSelecc($event)">
+  
+  </app-especialidades>
+   
+          </div>
+  
+  
+                    <!-- alta actor -->
+  
+          <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Alta especialista</h4>
+            <form [formGroup]="grupoDeControles" (ngSubmit)="enviar()">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre" formControlName="nombre">
+                  <small class="invalid" *ngIf="grupoDeControles.controls['nombre'].errors?.['required'] && grupoDeControles.controls['nombre'].touched">El nombre es requerido</small>
+                  <small class="invalid" *ngIf="grupoDeControles.controls['nombre'].errors?.['validadorDeEspacios'] && grupoDeControles.controls['nombre'].touched">El nombre no tiene que tener espacios</small>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido" formControlName="apellido">
+                    <small class="invalid" *ngIf="grupoDeControles.controls['apellido'].errors?.['required'] && grupoDeControles.controls['apellido'].touched">El apellido es requerido</small>
+                    <small class="invalid" *ngIf="grupoDeControles.controls['apellido'].errors?.['validadorDeEspacios'] && grupoDeControles.controls['apellido'].touched">El apellido no tiene que tener espacios</small>
+                  </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="edad" class="form-label">Edad</label>
+                  <input type="number" class="form-control" id="edad" placeholder="Ingrese edad" formControlName="edad">
+                  <small class="invalid" *ngIf="grupoDeControles.controls['edad'].errors?.['required'] && grupoDeControles.controls['edad'].touched">L edad es requerido</small>
+                 <small class="invalid" *ngIf="grupoDeControles.controls['edad'].errors?.['min'] || grupoDeControles.controls['edad'].errors?.['max']">La edad debe estar entre 18 y 100</small>
+                </div>
+                
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <label for="dni" class="form-label">DNI</label>
+                <input type="number" class="form-control" id="dni" placeholder="Ingrese el dni" formControlName="dni">
+                <small class="invalid" *ngIf="grupoDeControles.controls['dni'].errors?.['required'] && grupoDeControles.controls['dni'].touched">El dni es requerido</small>
+               <small class="invalid" *ngIf="grupoDeControles.controls['dni'].errors?.['min'] || grupoDeControles.controls['dni'].errors?.['max']">El dni debe estar entre 7 a 9 digitos</small>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="especialidad" class="form-label">Especialidad</label>
+                <input readonly type="text"   class="form-control" id="especialidad" placeholder="Ingrese especialidad" formControlName="especialidad">
+                <small class="invalid" *ngIf="grupoDeControles.controls['especialidad'].errors?.['required'] && grupoDeControles.controls['especialidad'].touched">La especialidad es requerido</small>
+                <small class="invalid" *ngIf="grupoDeControles.controls['especialidad'].errors?.['validadorDeEspacios'] && grupoDeControles.controls['especialidad'].touched">El especialidad no tiene que un formato correcto</small>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="mail" class="form-label">Mail</label>
+                <input type="text" class="form-control" id="mail" placeholder="Ingrese mail" formControlName="mail">
+                <small class="invalid" *ngIf="grupoDeControles.controls['mail'].errors?.['required'] && grupoDeControles.controls['mail'].touched">El mail es requerido</small>
+                <small class="invalid" *ngIf="grupoDeControles.controls['mail'].errors?.['email'] && grupoDeControles.controls['mail'].touched">El mail no tiene que un formato correcto</small>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="contrasenia" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="contrasenia" placeholder="Ingrese contrasenia" formControlName="contrasenia">
+                <small class="invalid" *ngIf="grupoDeControles.controls['contrasenia'].errors?.['required'] && grupoDeControles.controls['contrasenia'].touched">El contraseña es requerido</small>
+                <small class="invalid" *ngIf="grupoDeControles.controls['contrasenia'].errors?.['validadorDeEspacios'] && grupoDeControles.controls['contrasenia'].touched">El contraseña no tiene que tener espacios</small>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="dni" class="form-label">Imagen de perfil</label>
+                <input type="file" class="form-control" formControlName="img" placeholder="Seleccione Foto" (change)="onSelecFoto($event,'foto1')">
+                <small *ngIf="grupoDeControles.controls['img'].errors?.['required']  && grupoDeControles.controls['img'].touched" class="invalid">La foto es requerida</small>
+              </div>
+             
+  
+              <hr class="mb-4">
+              <button type="submit" [disabled]="grupoDeControles.invalid " class="btn btn-primary btn-block">Agregar</button>
+            </form>
+          </div>
+        </div>
+  
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+          <p class="mb-1">&copy; 2017-2018 Company Name</p>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+          </ul>
+        </footer>
+      </div>
+  
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+     

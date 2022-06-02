@@ -1,0 +1,78 @@
+<!--<title>Login</title>
+      <form [formGroup]="loginForm"  >
+        <p>
+        
+            <input
+              type="text"
+              matInput
+              placeholder="Username"
+              formControlName="email"
+              #email required
+            />
+      
+        </p>
+        <p>
+     
+            <input
+              type="password"
+              matInput
+              placeholder="Password"
+              formControlName="password"
+              #password required
+            />
+      
+        </p>
+        <button type="submit"  (click)="onLogin(email, password)" color="primary">Login</button>
+      </form>
+    -->
+     
+     <body   >
+       <div class="container">
+          <div class="row">
+              <div class="col-lg-3 col-md-2"></div>
+              <div class="col-lg-6 col-md-8 login-box">
+                  <div class="col-lg-12 login-key">
+                      <i class="fa fa-lock" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-lg-12 login-title">
+                      ACCEDER
+                  </div>
+  
+                  <div class="col-lg-12 login-form">
+                      
+                      <div class="col-lg-12 login-form">
+                          <form>
+                              <div class="form-group">
+                                  <label class="form-control-label">EMAIL</label>
+                                  <input type="text" class="form-control"  value="{{mail}}" #email required  >
+                              </div>
+                              <div class="form-group">
+                                  <label class="form-control-label">PASSWORD</label>
+                                  <input type="password" class="form-control"  value="{{contrasenia}}" i #password required >
+                              </div>
+                              <div class="texto-usuario"  >
+                                  o ingresar como 
+                               </div>
+                              <div class="col-lg-12 loginbttm">
+                                  <div class="col-lg-6 login-btm login-text">
+                                      <button type="submit" class="btn btn-outline-danger"
+                                          (click)="userAdmin()">Administrador</button>
+                                          <button type="submit" class=" btn btn-outline-warning"
+                                          (click)="unJugador()">Paciente</button> 
+                                   </div>
+                                  <div class="col-lg-6 login-btm login-button">
+                                      <button type="submit" class="btn btn-outline-primary"
+                                          (click)="onLogin(email, password)">ENTRAR</button>
+                                  </div>
+                                  
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-2"></div>
+              </div>
+          </div>
+  
+      </div>
+   </body> 
+
