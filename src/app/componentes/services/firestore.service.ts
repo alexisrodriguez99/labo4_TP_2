@@ -32,6 +32,9 @@ export class FirestoreService {
   public obtenerTodos(collection: string) {
     return this.firestore.collection(collection).snapshotChanges();
    }
+   public obtenerTodosFijo(collection: string) {
+    return this.firestore.collection(collection).get();
+   }
   //Actualiza un dato
   public actualizar(collection: string, documentId: string, data: any) {
     return this.firestore.collection(collection).doc(documentId).set(data);

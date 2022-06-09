@@ -1,0 +1,13 @@
+
+<div class="container">
+    <div class="row">
+      <h1>Elegir especialista:</h1>
+      <div class="container-esp" *ngFor="let especialista of especialistasFiltrados" (click)="elegirEspecialista(especialista)">
+            <div class="card-inner">
+              <div class="header">{{ especialista.nombre}}</div>
+            </div>
+            <img class="img-esp" [src]="especialista.img1" />
+      </div>
+      <h2 *ngIf="especialistasFiltrados.length == 0">No hay especialistas para mostrar</h2>
+    </div>
+  </div>

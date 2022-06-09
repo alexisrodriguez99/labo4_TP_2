@@ -22,7 +22,7 @@ export class AltaEspecialistaComponent implements OnInit {
     listaEspecialidades:string[]=[];
     foto:any
     foto2:any
-    usuario:Especialista={id:'',perfil:"especialista",nombre:'',apellido:'', edad:0,dni:0, mail:'',contrasenia:'',img1:'',permiso:false,especialidad:[]};
+    usuario:Especialista={id:'',perfil:"especialista",nombre:'',apellido:'', edad:0,dni:0, mail:'',contrasenia:'',img1:'',permiso:false,especialidad:[],diasLaborables:'', horario:{empieza:'', termina:''}};
   constructor(private fb:FormBuilder,private afs: AngularFirestore,private firestore:FirestoreService,private router:Router,private authSer:AuthService,private firestorage:AngularFireStorage) { }
  paisMostrar:any;
 
@@ -60,6 +60,8 @@ async enviar(){ try{
   this.usuario.contrasenia = this.grupoDeControles.get('contrasenia')?.value;
   this.usuario.mail = this.grupoDeControles.get('mail')?.value;
   this.usuario.especialidad = this.grupoDeControles.get('especialidad')?.value;
+  this.usuario.diasLaborables = {lunes:false, martes:false, miercoles:false, jueves:false, viernes:false, sabado:false};
+  this.usuario.horario = {empieza:'', termina:''};
    //this.repartidor.id=this.afs.createId();
    alert(this.usuario.mail)
     await this.authSer.register(this.usuario.mail, this.usuario.contrasenia).then(function (userCreds:any){

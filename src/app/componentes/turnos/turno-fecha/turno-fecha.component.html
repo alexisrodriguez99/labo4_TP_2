@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <h1>Elegir Dia:</h1>
+    <ng-container *ngIf="diasFiltro.length > 0">
+      <ng-container *ngFor="let dias of diasFiltro | ordenarPorDia">
+        <div class="container-esp"  (click)="elegirDia(dias)" *ngIf="dias.estado=='libre'">
+          <div class="card-inner" >
+            <div class="header">
+              <h3> {{dias.diaString}}</h3>
+              <h3> {{dias.dia}} </h3>
+              <h3> {{dias.mes}}</h3>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <h2 *ngIf="diasFiltro.length == 0">No hay dias para mostrar</h2>
+  </div>
+</div>

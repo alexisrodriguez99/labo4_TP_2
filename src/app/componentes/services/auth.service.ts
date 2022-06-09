@@ -38,6 +38,7 @@ export class AuthService {
     }
     async logout(): Promise<void>{
       try{
+        this.usuarioIngresado=""
         await this.afAuth.signOut();
       }
       catch(error)

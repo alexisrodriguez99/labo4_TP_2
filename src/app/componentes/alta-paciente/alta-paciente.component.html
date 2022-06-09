@@ -16,7 +16,7 @@
                     <!-- alta actor -->
   
           <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Alta repartidor</h4>
+            <h4 class="mb-3">Alta paciente</h4>
             <form [formGroup]="grupoDeControles" (ngSubmit)="enviar()">
               <div class="row">
                 <div class="col-md-6 mb-3">
@@ -81,7 +81,12 @@
                   <input type="file" class="form-control" formControlName="img2" placeholder="Seleccione Foto" (change)="onSelecFoto($event,'foto2')">
                   <small *ngIf="grupoDeControles.controls['img2'].errors?.['required']  && grupoDeControles.controls['img2'].touched" class="invalid">La foto es requerida</small>
                 </div>
-               
+                <div class="col-md-6 mb-3">
+                  <ngx-recaptcha2 #captchaElem
+                    [siteKey]="siteKey"
+                    formControlName="recaptcha">
+                  </ngx-recaptcha2>
+                </div>
   
               <hr class="mb-4">
               <button type="submit" [disabled]="grupoDeControles.invalid " class="btn btn-primary btn-block">Agregar</button>

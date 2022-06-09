@@ -1,0 +1,30 @@
+<div>
+    <main role="main">
+  
+      <div class="jumbotron fondo">
+        <div class="container">
+          <br><br>
+          <h1 class="display-3">Solicitar un nuevo Turno:</h1>
+          <br><br>
+        </div>
+      </div>
+  
+      <div class="container">
+        <div class="row" style="text-align: center;">{{estadoAlta}}
+             <app-turno-paciente *ngIf="estadoAlta == 1" (seleccionarPaciente)="elegirPaciente($event)"></app-turno-paciente> 
+            <app-turno-especialidad *ngIf="estadoAlta == 2" (especialidadElegida)="elegirEspecialidad($event)"></app-turno-especialidad>
+            <app-turno-especialista (seleccionarEspecialista)="elegirEspecialista($event)" [especialidadElegida]="especialidadSeleccionada" *ngIf="estadoAlta == 3"></app-turno-especialista>
+             <app-turno-fecha (seleccionarDia)="elegirDia($event)" [especialista]="especialistaSeleccionado" *ngIf="estadoAlta == 4"></app-turno-fecha>
+             <app-turno-hora (seleccionarHorario)="elegirHorario($event)" [dia]="diaSeleccionado" [especialista]="especialistaSeleccionado" *ngIf="estadoAlta == 5"></app-turno-hora> 
+  
+            <div class="btn-group">
+              <button *ngIf="estadoAlta > 1 && authSvc.usuarioIngresado.perfil == 'admin' || estadoAlta > 2 && authSvc.usuarioIngresado.perfil == 'paciente'" type="button" class="btn btn-primary" (click)="volverAtras()">Volver</button>
+              <button type="button" class="btn btn-secondary" (click)="volverAHome()">Volver a home</button>
+            </div>
+        </div>
+        <hr>
+      </div> <!-- /container -->
+    </main>
+  
+  
+  </div>

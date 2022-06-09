@@ -13,6 +13,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
   styleUrls: ['./alta-paciente.component.scss']
 })
 export class AltaPacienteComponent implements OnInit {
+  siteKey: string = '6LfAkPwcAAAAAGyFX7XQe4T0mMuDjvO123IrU6iJ';
 
   public grupoDeControles!:FormGroup
   paisSeleccionado:string="";
@@ -39,7 +40,9 @@ export class AltaPacienteComponent implements OnInit {
       'mail':['',[Validators.required,Validators.email]],
       'contrasenia':['',[Validators.required,this.validadorDeEspacios]],
       'img':[null,Validators.required],
-      'img2':[null,Validators.required]
+      'img2':[null,Validators.required],
+      'recaptcha' : ['', Validators.required],
+
 
   });
 

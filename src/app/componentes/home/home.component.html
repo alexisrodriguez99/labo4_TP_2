@@ -21,17 +21,18 @@
          <!--   <p><a class="btn btn-primary btn-lg" href="#" role="button"   >Learn more &raquo;</a></p>-->
         </div>
       </div>
-
+      <!--ESPECIALISTA-->
+    <div *ngIf="authServise.usuarioIngresado.perfil=='especialista'">
       <div class="container">
         <!-- Example row of columns -->
         <div class="row">
           <div class="col-md-4">
-            <h2>---</h2>
-             <button  >ingresar</button>
+            <h2>Mi Perfil</h2>
+             <button (click)="miPerfil()" >ingresar</button>
             </div>
           <div class="col-md-4">
-            <h2>----</h2>
-             <button  >ingresar</button>
+            <h2>Mis Turnos</h2>
+            <button (click)="misTurnos('especialista')" >ingresar</button>
           </div>
           <div class="col-md-4">
             <h2>----</h2>
@@ -42,11 +43,63 @@
         <hr>
 
       </div> <!-- /container -->
+  </div>
+  <!--paciente-->
+  <div *ngIf="authServise.usuarioIngresado.perfil=='paciente'">
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Mi Perfil</h2>
+          <button (click)="miPerfil()" >ingresar</button>
 
+          </div>
+        <div class="col-md-4">
+          <h2>Mis Turnos</h2>
+           <button (click)="misTurnos('paciente')" >ingresar</button>
+        </div>
+        <div class="col-md-4">
+          
+          <h2>Sacar Turno</h2>
+           <button (click)="sacarTurno()" >ingresar</button>
+        </div>
+      </div>
+
+      <hr>
+
+    </div> <!-- /container -->
+</div>
+
+
+  <!--ADMIN-->
+  <div *ngIf="authServise.usuarioIngresado.perfil=='admin'">
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Mi Perfil</h2>
+          <button (click)="miPerfil()" >ingresar</button>
+
+          </div>
+        <div class="col-md-4">
+          <h2>Turnos</h2>
+           <button (click)="turnos()" >ingresar</button>
+        </div>
+        <div class="col-md-4">
+          
+          <h2>Sacar Turno</h2>
+           <button (click)="sacarTurno()" >ingresar</button>
+        </div>
+      </div>
+
+      <hr>
+
+    </div> <!-- /container -->
+</div>
     </main>
 
     <footer class="container">
-      <p>&copy; Lavo IV 2021-2021</p>
+      <p>&copy; Lavo IV 2022-2022</p>
     </footer>
 
     <!-- Bootstrap core JavaScript

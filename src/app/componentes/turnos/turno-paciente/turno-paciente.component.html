@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row">
+      <h1>Elegir paciente:</h1>
+      <div class="container-esp" *ngFor="let paciente of pacientesFiltrados" (click)="elegirPaciente(paciente)">
+            <div class="card-inner">
+              <div class="header">{{ paciente.nombre}}</div>
+            </div>
+            <img class="img-esp" [src]="paciente.img1" />
+      </div>
+      <h2 *ngIf="pacientesFiltrados.length == 0">No hay pacientes para mostrar</h2>
+    </div>
+  </div>

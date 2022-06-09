@@ -10,10 +10,10 @@
           <a class="nav-link" routerLink="/alta" *ngIf="(logedUser == false)  ; else noLoged">Registrarse <span class="sr-only"> </span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/alta" *ngIf="(usuarioActual.perfil == 'admin')  ; else noLoged">Registrar <span class="sr-only"> </span></a>
+          <a class="nav-link" routerLink="/alta" *ngIf="(usuarioActual.perfil == 'admin') && (logedUser == true) ; else noLoged">Registrar <span class="sr-only"> </span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/listaEspecialista" *ngIf="(usuarioActual.perfil == 'admin')  ; else noLoged">Usuarios <span class="sr-only"> </span></a>
+          <a class="nav-link" routerLink="/listaEspecialista" *ngIf="(usuarioActual.perfil == 'admin') && (logedUser == true) ; else noLoged">Usuarios <span class="sr-only"> </span></a>
         </li>
         <li class="nav-item active" *ngIf="logedUser == true; else noLoged">
           <a class="nav-link" (click)="logOut()">Salir</a>

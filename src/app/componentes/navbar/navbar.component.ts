@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { UsuariosClinica } from '../../clases/usuariosClinica';
 import { Router } from '@angular/router';
 import { AltaRoutingModule } from '../alta/alta-routing.module';
+import { UsersService } from '../services/users.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit,OnChanges {
   logedUser:any = null;
  public usuarioActual:any=this.authServise.usuarioIngresado
 
-  constructor(private authServise: AuthService,private router: Router) { }
+  constructor(private authServise: AuthService,private router: Router,private users:UsersService) { }
   ngOnInit(): void {
     this.estaLogeado();
     /*this.authServise.afAuth.user.subscribe(()=>{
@@ -40,6 +41,7 @@ export class NavbarComponent implements OnInit,OnChanges {
   logOut()
   {
     this.authServise.usuarioIngresado="";
+    console.log(this.authServise.usuarioIngresado)
     this.authServise.logout();
     console.log("saliendo");
     this.router.navigateByUrl('/home');
@@ -57,6 +59,7 @@ estaLogeado(){
       setTimeout(()=>{
         this.usuarioActual = this.authServise.usuarioIngresado;
         console.log('se cambia el usuario', this.usuarioActual);
+ 
       }, 1500);
     }
     else

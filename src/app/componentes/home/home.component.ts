@@ -9,15 +9,17 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private authServise: AuthService,private router:Router) { }
+  public usuarioActual:any=this.authServise.usuarioIngresado
+
+  constructor(public authServise: AuthService,private router:Router) { }
 
   logedUser:any = false;
   mail:any=null;
   ngOnInit(): void {
     this.estaLogeado();
     console.log("_______")
-    console.log(this.authServise.usuarioIngresado)
-    if(this.logedUser==false && this.authServise.usuarioIngresado.perfil=="admin"){
+   // console.log(this.authServise.usuarioIngresado)
+     if(this.logedUser==false && this.authServise.usuarioIngresado.perfil=="admin"){
       this.onLogin("admin@gmail.com","123456")
     }
     //alert(this.authServise.usuarioIngresado.nombre)
@@ -56,5 +58,21 @@ async onLogin(email:any,password:any){
      console.log(" _____"+user.user.emailVerified);
     console.log("::::::::::::");
     console.log(user.user.email);
+  }
+  miPerfil(){
+    this.router.navigateByUrl('/miPerfil');
+
+  }
+  sacarTurno(){
+    this.router.navigateByUrl('/solicitarTurno');
+
+  }
+  turnos(){
+    this.router.navigateByUrl('/turnos');
+
+  }
+  misTurnos(perfil:any){
+    this.router.navigateByUrl('/misTurnos');
+
   }
 }

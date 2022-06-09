@@ -1,0 +1,153 @@
+
+<!-- TABLA HORIZONTAL
+   <table class="table table-light mydatatable">
+    <thead>
+      <th>
+        Comentario del Admin
+      </th>
+      <th>
+        Comentario del Especialista
+      </th>
+      <th>
+        Comentario del Paciente
+      </th>
+      <th>
+        Diagnostico
+      </th>
+      <th>
+        <div class="row"><button  class="btn btn-danger" (click)="volver()">Cerrar</button></div>
+      </th>
+    </thead>
+    <tbody>
+      <tr>
+        <td *ngIf="!turno.comentarioAdmin">
+          El admin no dejo comentario
+        </td>
+        <td *ngIf="turno.comentarioAdmin">
+          {{turno.comentarioAdmin}}
+        </td>
+        <td *ngIf="!turno.comentarioEspecialista">
+          El especialista no dejo comentario
+        </td>
+        <td *ngIf="turno.comentarioEspecialista">
+          {{turno.comentarioEspecialista}}
+        </td>
+        <td *ngIf="!turno.comentarioPaciente">
+          El paciente no dejo comentario
+        </td>
+        <td *ngIf="turno.comentarioPaciente">
+          {{turno.comentarioPaciente}}
+        </td>
+        <td *ngIf="!turno.diagnostico">
+          No se dejo diagnostico
+        </td>
+        <td *ngIf="turno.diagnostico">
+          {{turno.diagnostico}}
+        </td>
+      </tr>
+    </tbody>
+  </table> -->
+
+  <!--OTRA TABLA VERTICAL-->
+  <table class="table table-striped table-dark">
+    <thead>
+      <th>
+        Comentario del Admin
+      </th>
+      
+      <!-- <th>
+        Comentario del Especialista
+      </th>
+      <th>
+        Comentario del Paciente
+      </th>
+      <th>
+        Diagnostico
+      </th>
+      <th>
+        <div class="row"><button  class="btn btn-danger" (click)="volver()">Cerrar</button></div>
+      </th> -->
+    </thead>
+    <tbody>
+      <tr>
+        <td *ngIf="!turno.comentarioAdmin">
+          El admin no dejo comentario
+        </td>
+        <td *ngIf="turno.comentarioAdmin">
+          {{turno.comentarioAdmin}}
+        </td>
+        <!-- <td *ngIf="!turno.comentarioEspecialista">
+          El especialista no dejo comentario
+        </td>
+        <td *ngIf="turno.comentarioEspecialista">
+          {{turno.comentarioEspecialista}}
+        </td>
+        <td *ngIf="!turno.comentarioPaciente">
+          El paciente no dejo comentario
+        </td>
+        <td *ngIf="turno.comentarioPaciente">
+          {{turno.comentarioPaciente}}
+        </td>
+        <td *ngIf="!turno.diagnostico">
+          No se dejo diagnostico
+        </td>
+        <td *ngIf="turno.diagnostico">
+          {{turno.diagnostico}}
+        </td> -->
+      </tr>
+    </tbody>
+      <thead>
+        <th>
+          Comentario del Especialista
+        </th>
+       
+      </thead>
+      <tbody>
+      <tr>
+           <td *ngIf="!turno.comentarioEspecialista">
+            El especialista no dejo comentario
+          </td>
+          <td *ngIf="turno.comentarioEspecialista">
+            {{turno.comentarioEspecialista}}
+          </td>
+       </tr>
+    </tbody>
+
+    <thead>
+      <th>
+        Comentario del Paciente
+      </th>
+    </thead>
+    <tbody>
+      <tr>
+        <td *ngIf="!turno.comentarioPaciente">
+          El paciente no dejo comentario
+        </td>
+        <td *ngIf="turno.comentarioPaciente">
+          {{turno.comentarioPaciente}}
+        </td>
+       </tr>
+    </tbody>
+
+    <thead>
+      <th>
+        Comentario del Paciente
+      </th>
+    </thead>
+    <tbody>
+      <tr>
+        <td *ngIf="!turno.diagnostico">
+          No se dejo diagnostico
+        </td>
+        <td *ngIf="turno.diagnostico">
+          {{turno.diagnostico}}
+        </td>
+       </tr>
+    </tbody>
+
+    <thead>
+      <th>
+        <div class="row"><button  class="btn btn-danger" (click)="volver()">Cerrar</button></div>
+      </th>
+    </thead>
+  </table>
