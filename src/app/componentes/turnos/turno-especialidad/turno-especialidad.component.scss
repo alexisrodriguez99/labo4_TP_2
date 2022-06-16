@@ -33,10 +33,12 @@
     margin-right: 0.5rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    background-color: white;
+    background-color: rgb(24, 127, 131);
     border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
-    height: 10rem;
+    height: 15rem;
     width: 15rem;
+    border-radius:150px;
+    border:7px solid #666;
   }
   .container-esp:hover,
   .card:hover {
@@ -53,4 +55,15 @@
     background-color: rgba(83, 83, 83, 0.664);
     color: white;
   }
- 
+  .redondo {
+    width:80px;
+    height:80px;
+    border-radius:150px;
+    border:7px solid #666;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 10%;
+}

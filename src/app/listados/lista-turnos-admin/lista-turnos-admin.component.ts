@@ -49,7 +49,7 @@ export class ListaTurnosAdminComponent implements OnInit {
         turno.estado = 'cancelado';
         turno.resenia = true;
         turno.comentarioAdmin = result.value;
-        this.firestore.actualizar('turnos', turno.id, turno);
+        this.firestore.actualizar('turno', turno.id, turno);
       }
     })
   }

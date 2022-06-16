@@ -19,7 +19,7 @@ export class OrdenarPorDiaPipe implements PipeTransform {
         if(tempArray[key + 1]){
     
           // Comprueba si el primero es mayor que el segundo y no esta en la última posición
-          if (tempArray[key].hora > tempArray[key + 1].hora && tempArray.length - 1 != key) {
+          if (tempArray[key].fechaCreacion > tempArray[key + 1].fechaCreacion && tempArray.length - 1 != key) {
               // Intercambia la primera posición por la segunda
               let primerNum = tempArray[key]
               let segundoNum = tempArray[key + 1]

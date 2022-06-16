@@ -1,0 +1,37 @@
+<button class="btn btn-primary" (click)="volver()">Volver</button>
+<button class="btn btn-success" (click)="Descargar()">Descargar</button>
+
+<div id="htmlData">
+    <div *ngIf="mostrarTabla">
+<table class="table table-light mydatatable">
+  <thead>
+    <th>
+      Usuario
+    </th>
+    <th>
+      Fecha
+    </th>
+    <th>
+      Hora
+    </th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ingreso of logIngresos">
+      <td>
+        <!-- {{ingreso.idUsuario | nombreUsuario:listadoUsuarios}} -->
+        {{ingreso.mail}}
+      </td>
+      <td>
+        {{ingreso.fecha}}
+      </td>
+      <td>
+        {{ingreso.hora}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+    <div *ngIf="mostrarGrafico">
+        <div [chart]="chart"></div>
+      </div>
+</div>

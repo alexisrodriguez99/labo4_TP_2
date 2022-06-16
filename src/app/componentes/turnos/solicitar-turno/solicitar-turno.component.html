@@ -10,7 +10,7 @@
       </div>
   
       <div class="container">
-        <div class="row" style="text-align: center;">{{estadoAlta}}
+        <div class="row" style="text-align: center;"><!--{{estadoAlta}}-->
              <app-turno-paciente *ngIf="estadoAlta == 1" (seleccionarPaciente)="elegirPaciente($event)"></app-turno-paciente> 
             <app-turno-especialidad *ngIf="estadoAlta == 2" (especialidadElegida)="elegirEspecialidad($event)"></app-turno-especialidad>
             <app-turno-especialista (seleccionarEspecialista)="elegirEspecialista($event)" [especialidadElegida]="especialidadSeleccionada" *ngIf="estadoAlta == 3"></app-turno-especialista>

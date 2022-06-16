@@ -19,4 +19,5 @@ export interface Turno {
     tieneCalificacion:boolean,
     calificacion:number, // calificacion que deja el paciente (al finalizar el turno)
     encuestaRealizada:boolean,
+    fechaTurnoPedido?:number
   }

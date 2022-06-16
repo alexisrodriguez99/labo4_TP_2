@@ -75,4 +75,13 @@ async onLogin(email:any,password:any){
     this.router.navigateByUrl('/misTurnos');
 
   }
+  pacientes(){
+    this.router.navigateByUrl('/pacientes');
+
+  }
+
+  reportes(){
+    this.router.navigateByUrl('/reportes');
+
+  }
 }

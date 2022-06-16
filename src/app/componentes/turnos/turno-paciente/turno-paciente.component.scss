@@ -1,55 +1,69 @@
 .row {
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-  .card {
-    cursor: pointer;
-  }
-  .img-action {
-    width: 15.1rem;
-    height: 9rem;
-  }
-  .span-action {
-    font-weight: bold;
-    font-size: 2rem;
-  }
-  .span-info {
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: antiquewhite;
-    background-color: rgba(87, 149, 231, 0.76);
-  }
-  .img-esp {
-    height: 6rem;
-    width: 6rem;
-    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
-    margin-top: 5px;
-  }
-  .container-esp {
-    cursor: pointer;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    background-color: white;
-    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
-    height: 10rem;
-    width: 15rem;
-  }
-  .container-esp:hover,
-  .card:hover {
-    background-color: rgba(36, 36, 36, 0.76);
-    color: white;
-  }
-  #container-date {
-    height: 4rem;
-  }
-  #container-schedule {
-    height: 7rem;
-  }
-  .header-title {
-    background-color: rgba(83, 83, 83, 0.664);
-    color: white;
-  }
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.card {
+  cursor: pointer;
+}
+.img-action {
+  width: 15.1rem;
+  height: 9rem;
+}
+.span-action {
+  font-weight: bold;
+  font-size: 2rem;
+}
+.span-info {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: antiquewhite;
+  background-color: rgba(87, 149, 231, 0.76);
+}
+.img-esp {
+  height: 6rem;
+  width: 10rem;
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  margin-top: 5px;
+}
+.container-esp {
+  cursor: pointer;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color:  rgb(51, 255, 0);
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  height: 15rem;
+  width: 15rem;
+  border-radius:150px;
+  border:7px solid #666;
+}
+.container-esp:hover,
+.card:hover {
+  background-color: rgba(36, 36, 36, 0.76);
+  color: white;
+}
+#container-date {
+  height: 4rem;
+}
+#container-schedule {
+  height: 7rem;
+}
+.header-title {
+  background-color: rgba(83, 83, 83, 0.664);
+  color: white;
+}
+.redondo {
+  width:80px;
+  height:80px;
+  border-radius:150px;
+  border:7px solid #666;
+}
+.center {
+margin-left: auto;
+margin-right: auto;
+display: block;
+margin-top: 10%;
+}

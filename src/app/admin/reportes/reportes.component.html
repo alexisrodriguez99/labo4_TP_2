@@ -1,0 +1,61 @@
+<div>
+    <main role="main">
+  
+      <div class="jumbotron fondo">
+        <div class="container">
+          <br><br>
+          <h1 class="display-3"> Reportes:</h1>
+          <br><br>
+        </div>
+      </div>
+  
+      <div class="container">
+        <div class="row" style="text-align: center;" *ngIf="!reporteSeleccionado">
+           <div class="col-3" style="text-align: center;">
+            <h2 style="text-align: center;" >Ingresos</h2>
+            <button class="btn btn-primary" (click)="verIngresos()">Ver Logs</button>
+          </div> 
+          <div class="col-3" style="text-align: center;">
+            <h2 style="text-align: center;" >Turnos por Especialidad</h2>
+            <button class="btn btn-primary" (click)="verTurnosEspecialidad()">Ver Turnos</button>
+          </div>
+           <div class="col-3" style="text-align: center;">
+            <h2 style="text-align: center;" >Turnos por Dia</h2>
+            <button class="btn btn-primary" (click)="verTurnosDia()">Ver Turnos</button>
+          </div>
+         <div class="col-3" style="text-align: center;">
+            <h2 style="text-align: center;" >Turnos por Medico</h2>
+            <button class="btn btn-primary" (click)="verTurnosSolicitados()">Ver Turnos</button>
+          </div>
+         <div class="col-3" style="text-align: center;">
+            <h2 style="text-align: center;" >Turnos finalizados por Medico</h2>
+            <button class="btn btn-primary" (click)="verTurnosFinalizados()">Ver Turnos</button>
+          </div> 
+        </div>
+  
+  
+        <div class="row" *ngIf="reporteSeleccionado == 'ingresos'">
+          <app-reporte-logs (cerrarTabla)="cerrarTabla($event)"></app-reporte-logs>
+        </div> 
+  
+        <div class="row" *ngIf="reporteSeleccionado == 'turnosEspecialidad'">
+          <app-reporte-turnos-especialidad (cerrarTabla)="cerrarTabla($event)"></app-reporte-turnos-especialidad>
+        </div>
+  
+         <div class="row" *ngIf="reporteSeleccionado == 'turnosDia'">
+          <app-reporte-turnos-dias (cerrarTabla)="cerrarTabla($event)"></app-reporte-turnos-dias>
+        </div>
+  
+        <div class="row" *ngIf="reporteSeleccionado == 'turnosSolicitados'">
+          <app-reporte-turnos-medico (cerrarTabla)="cerrarTabla($event)"></app-reporte-turnos-medico>
+        </div>
+  
+       <div class="row" *ngIf="reporteSeleccionado == 'turnosFinalizados'">
+          <app-reporte-turnos-finalizados (cerrarTabla)="cerrarTabla($event)"></app-reporte-turnos-finalizados>
+        </div>
+        <hr>
+      </div> <!-- /container -->
+    </main>
+  
+  
+  </div>

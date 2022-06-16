@@ -13,7 +13,11 @@ import { UsersService } from '../services/users.service';
 export class NavbarComponent implements OnInit,OnChanges {
   logedUser:any = null;
  public usuarioActual:any=this.authServise.usuarioIngresado
-
+ rojo='red';
+ verde='green';
+ rosa='pink';
+ azul='blue';
+ amarillo='yellow';
   constructor(private authServise: AuthService,private router: Router,private users:UsersService) { }
   ngOnInit(): void {
     this.estaLogeado();

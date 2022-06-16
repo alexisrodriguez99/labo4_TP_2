@@ -1,0 +1,135 @@
+<h4>Buscar:</h4>
+<input type="text" [(ngModel)]="stringFiltro" ><button class="btn btn-primary" (click)="filtrar()">Filtrar</button><button class="btn btn-info" (click)="limpiarFiltro()">Limpiar</button>
+<div class="row">
+  <button style="margin-left: 5px;" class="btn btn-primary" (click)="descargarPDF()">Descargar PDF</button>
+</div>
+<table class="table table-light mydatatable">
+  <thead>
+    <th>
+      Especialista
+    </th>
+    <th>
+      Fecha
+    </th>
+    <th>
+      Ver Detalles
+    </th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let historia of historiasFiltradas">
+      <td>
+        {{historia.idEspecialista | nombreUsuario:listadoEspecialistas}}
+      </td>
+      <td>
+        {{historia.fecha | fechaProgramada}}
+      </td>
+      <td>
+        <div class="row">
+          <button class="btn btn-info" (click)="verDetalles(historia)">Ver Detalles</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div   id="divPDF" class="pdf"  >
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <img src="../../../assets/clinica.png" width="200" height="200">
+      </div>
+      <div class="col-3 offset-4">
+        <h1 id="titulo"></h1>
+        <h1 id="fecha"></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 offset-3" id="historiaDetalles">
+
+      </div>
+    </div>
+    <hr>
+  </div> -->
+
+
+  <!-- <table border="2">
+    <tr>
+      <td>
+        <img src="/assets/img/favicon.ico" width="50px" height="50px">
+      </td>
+      <td>
+          <p>Historial clinico de {{authSvc.usuarioIngresado.nombre}}, {{authSvc.usuarioIngresado.apellido}} </p>
+      </td>
+      <td>
+        <p>Fecha de creacion: {{fechaActual}} </p>
+    </td>
+    </tr>
+  </table> -->
+
+  <div class="row">
+    <div class="col-lg-4"   >
+      <img src="/assets/img/favicon.ico" width="50px" height="50px">
+    </div>
+    <div class="col-lg-4"   >
+      <p>Historial clinico de {{authSvc.usuarioIngresado.nombre}}, {{authSvc.usuarioIngresado.apellido}} </p>
+    </div>
+    <div class="col-lg-4"   >
+      <p>Fecha de creacion: {{fechaActual}} </p>
+    </div>
+  </div>
+
+
+  <table class="table" id="tables" >
+    <thead>
+      <th>
+        Especialista
+      </th>
+      <th>
+        Especialidad
+      </th>
+      <th>
+        Fecha
+      </th>
+      <th>
+        Altura
+      </th>
+      <th>
+        Peso
+      </th>
+      <th>
+        Temperatura
+      </th>
+      <th>
+        Presion
+      </th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let historia of historiasFiltradas">
+        <td>
+          {{historia.idEspecialista | nombreUsuario:listadoEspecialistas}}
+        </td>
+        <td>
+            {{historia.especialista.especialidad}}
+          </td>
+        <td>
+          {{historia.fecha | fechaProgramada}}
+        </td>
+        <td>
+            {{historia.altura}}
+          </td>
+          <td>
+            {{historia.peso}}
+          </td>
+          <td>
+            {{historia.temepratura}}
+          </td>
+          <td>
+            {{historia.presion}}
+          </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -5,11 +5,14 @@
       <ng-container *ngFor="let dias of diasFiltro | ordenarPorDia">
         <div class="container-esp"  (click)="elegirDia(dias)" *ngIf="dias.estado=='libre'">
           <div class="card-inner" >
-            <div class="header">
-              <h3> {{dias.diaString}}</h3>
-              <h3> {{dias.dia}} </h3>
-              <h3> {{dias.mes}}</h3>
+            <div class="center">
+              <div class="header">
+                <!-- <h3> {{dias.diaString }}</h3>
+                <h3> {{dias.dia}} </h3>
+                <h3> {{dias.mes}}</h3> -->
+                <h3> {{dias.fechaCreacion | fechaProgramada:dias.mes:dias.dia}}</h3>
             </div>
+              </div>
           </div>
         </div>
       </ng-container>

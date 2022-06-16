@@ -90,7 +90,9 @@ this.listadoEspecialidades.push(unRepartidor.payload.doc.data());
    else if(this.authSvc.usuarioIngresado.perfil=="admin"){
     this.horarioSeleccionado.idPaciente=this.pacienteSeleccionado.id;
    }
-    this.horarioSeleccionado.estado="pendiente";
+   this.horarioSeleccionado.estado="pendiente";
+   let diaTurnoSacado = new Date()
+   this.horarioSeleccionado.fechaTurnoPedido=diaTurnoSacado.getTime();
    // this.turno.crearTurno(this.pacienteSeleccionado.id, this.especialistaSeleccionado.id, this.especialidadSeleccionada, this.diaSeleccionado, this.horarioSeleccionado);
     this.firestore.actualizar("turno",this.horarioSeleccionado.id,this.horarioSeleccionado).then(()=>{
        this.router.navigate(['home']);

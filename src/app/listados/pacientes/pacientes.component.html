@@ -1,0 +1,141 @@
+<main role="main">
+
+    <div class="jumbotron fondo">
+      <div class="container">
+        <br><br>
+        <h1 class="display-3">Pacientes, Historias Clinicas</h1>
+        <br><br>
+      </div>
+    </div>
+  
+    <!-- LISTADO SI ES ADMIN -->
+    <div class="container" *ngIf="usuarioActual.perfil == 'admin' && !pacienteSeleccionado">
+        <div class="row row-conEspecialista">
+            <h1>Elegir paciente:</h1>
+              <ng-container *ngFor="let paciente of listadoPacietnes">
+                <div class="container-esp" (click)="verUsuario(paciente)">
+                  <div class="card-inner" >
+                    <div class="header">
+                      <img [src]="paciente.img1" class="img-esp" />
+                      <h3>{{paciente.nombre}} {{paciente.apellido}}</h3>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+          </div>
+    <hr>
+  </div>  
+  <!-- /container -->
+  
+  <!-- ESPECIALISTA -->
+  <div class="container" *ngIf="usuarioActual.perfil == 'especialista' && !pacienteSeleccionado">
+    <div class="row row-conEspecialista">
+      <h1>Elegir paciente:</h1>
+        <ng-container *ngFor="let paciente of misPacientes">
+          <div class="container-esp" (click)="verUsuario(paciente)">
+            <div class="card-inner" >
+              <div class="header">
+                <img [src]="paciente.img1" class="img-esp" />
+                <h3>{{paciente.nombre}} {{paciente.apellido}}</h3>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+    </div>
+    <hr>
+  </div> <!-- /container -->
+  
+  <!-- DETALLES SI ADMIN -->
+  <div class="container" *ngIf="usuarioActual.perfil == 'admin' && pacienteSeleccionado">
+    <div class="row">
+        <div class="col-md-3">
+          <button class="btn btn-primary" (click)="quitarDetalles()">Volver</button>
+          <div class="card">
+            <span class="border border"></span>
+            <img [src]="pacienteSeleccionado.img1" width="300px" class="img-fluid" />
+          </div>
+        </div>
+  
+        <div class="col-md-8">
+          <table class="table table-light mydatatable">
+            <thead>
+              <th>
+                Especialista
+              </th>
+              <th>
+                Fecha
+              </th>
+              <th>
+                Ver Detalles
+              </th>
+              <th></th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let historia of historiasClinicas">
+                <td>
+                  {{historia.idEspecialista | nombreUsuario:listadoEspecialistas}}
+                </td>
+                <td>
+                  {{historia.fecha | fechaProgramada}}
+                </td>
+                <td>
+                  <div class="row">
+                    <button class="btn btn-info" (click)="verDetalles(historia)">Ver Detalles</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <hr>
+  </div> <!-- /container -->
+  
+  <!-- DETALLES SI ESPECIALISTA -->
+  <div class="container" *ngIf="usuarioActual.perfil == 'especialista' && pacienteSeleccionado">
+    <div class="row">
+      <div class="col-md-3">
+        <button class="btn btn-primary" (click)="quitarDetalles()">Volver</button>
+        <div class="card">
+          <span class="border border"></span>
+          <img [src]="pacienteSeleccionado.img1" width="300px" class="img-fluid" />
+        </div>
+      </div>
+  
+      <div class="col-md-8">
+        <table class="table table-light mydatatable">
+          <thead>
+            <th>
+              Especialista
+            </th>
+            <th>
+              Fecha
+            </th>
+            <th>
+              Ver Detalles
+            </th>
+            <th></th>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let historia of historiasClinicas">
+              <tr *ngIf="historia.idEspecialista == usuarioActual.id">
+                <td>
+                  {{historia.idEspecialista | nombreUsuario:listadoEspecialistas}}
+                </td>
+                <td>
+                  {{historia.fecha | fechaProgramada}}
+                </td>
+                <td>
+                  <div class="row">
+                    <button class="btn btn-info" (click)="verDetalles(historia)">Ver Detalles</button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <hr>
+  </div> <!-- /container -->
+  </main>

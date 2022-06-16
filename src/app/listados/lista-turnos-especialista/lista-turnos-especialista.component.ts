@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
  import { Turno } from 'src/app/clases/turno';
 import { AuthService } from 'src/app/componentes/services/auth.service';
 import { FirestoreService } from 'src/app/componentes/services/firestore.service';
+import { HistoriaMedicaService } from 'src/app/componentes/services/historia-medica.service';
 import { TurnoService } from 'src/app/componentes/services/turno.service';
 import { UsersService } from 'src/app/componentes/services/users.service';
     
@@ -14,15 +15,16 @@ import Swal from 'sweetalert2';
 export class ListaTurnosEspecialistaComponent implements OnInit {
   turnosExistentes:any[] = [];
   turnosFiltrados:Turno[] = [];
-
+hola="aceptado"
   listadoPacientes:any[] = [];
   @Output() mostrarResenia:EventEmitter<any> = new EventEmitter<any>();
 
   cantidadOtros:any;
   cantidadArray:number[] = [];
+  carga:boolean=false;
 
   stringFiltro = '';
-  constructor(private authSvc:AuthService, private firestore:FirestoreService,private users:UsersService,private turno:TurnoService) { }
+  constructor(private authSvc:AuthService, private firestore:FirestoreService,private users:UsersService,private turno:TurnoService,private historiaClinica:HistoriaMedicaService) { }
 
   ngOnInit(): void {
     this.listadoPacientes = this.users.listadoPacientes;
@@ -59,6 +61,7 @@ export class ListaTurnosEspecialistaComponent implements OnInit {
   }
   rechazarTurno(turno:Turno)
   {
+
     Swal.fire({
       title: 'Dejá tu comentario',
       input: 'text',
@@ -80,6 +83,27 @@ export class ListaTurnosEspecialistaComponent implements OnInit {
   }
   aceptarTurno(turno:Turno)
   {
+    let paciente
+    this.firestore.obtenerById("usuariosClinica",turno.idPaciente).toPromise().then(async(ingreso)=>{
+      /* this.authSvc.usuarioIngresado="";
+       this.ajam=null;*/
+       //alert(this.ajam)
+       //alert("ddsf")
+         //console.log(ingreso.payload.data());
+          paciente = ingreso?.data()
+
+         console.log(paciente);
+      //alert("hola")
+         
+  
+       
+    //if(user ){this.ajam=ingreso?.data();
+    })
+    console.log("no tendria que entrar")
+    console.log(paciente)
+    //alert("para")
+    console.log(paciente)
+
     turno.estado = 'aceptado';
     this.firestore.actualizar('turno', turno.id, turno);
   }
@@ -106,10 +130,119 @@ export class ListaTurnosEspecialistaComponent implements OnInit {
       turno.resenia = true;
       turno.comentarioEspecialista = result.value!.comentario;
       turno.diagnostico = result.value!.diagnostico;
-      this.firestore.actualizar('turno', turno.id, turno);
 
+
+      // turno.estado = 'finalizado';
+      // turno.resenia = true;
+      // turno.comentarioEspecialista = result.value!.comentario;
+      // turno.diagnostico = result.value!.diagnostico;
+
+      Swal.fire({
+        title: 'Cargar historia Clinica',
+        html: `<input type="text" id="altura" class="swal2-input" placeholder="Altura (En metros)">
+        <input type="text" id="peso" class="swal2-input" placeholder="Peso (En kilos)">,
+        <input type="text" id="temperatura" class="swal2-input" placeholder="Temperatura (En ~Grado Celcius)">
+        <input type="text" id="presion" class="swal2-input" placeholder="Presión"><br>
+        <span>Otros<span>
+        <div class="row">
+        <div class="col-6">
+        <input type="text" id="clave1" class="swal2-input col-6" placeholder="Clave (opcional)">
+        </div>
+        <div class="col-6">
+        <input type="text" id="valor1" class="swal2-input col-6" placeholder="Valor (opcional)">
+        </div>
+        <div class="col-6">
+        <input type="text" id="clave2" class="swal2-input col-6" placeholder="Clave (opcional)">
+        </div>
+        <div class="col-6">
+        <input type="text" id="valor2" class="swal2-input col-6" placeholder="Valor (opcional)">
+        </div>
+        <div class="col-6">
+        <input type="text" id="clave3" class="swal2-input col-6" placeholder="Clave (opcional)">
+        </div>
+        <div class="col-6">
+        <input type="text" id="valor3" class="swal2-input col-6" placeholder="Valor (opcional)">
+        </div>
+        </div>
+        `,
+        confirmButtonText: 'Enviar',
+        focusConfirm: false,
+        preConfirm: () => {
+          let altura!:any;
+          let peso!:any;
+          let temperatura!:any;
+          let presion!:any;
+
+          let clave1!:any;
+          let valor1!:any;
+          let clave2!:any;
+          let valor2!:any;
+          let clave3!:any;
+          let valor3!:any;
+
+          let otros:any = [];
+
+          altura = (<HTMLInputElement>Swal.getPopup()!.querySelector('#altura')).value;
+          peso = (<HTMLInputElement>Swal.getPopup()!.querySelector('#peso')).value;
+          temperatura = (<HTMLInputElement>Swal.getPopup()!.querySelector('#temperatura')).value;
+          presion = (<HTMLInputElement>Swal.getPopup()!.querySelector('#presion')).value;
+
+          clave1 = (<HTMLInputElement>Swal.getPopup()!.querySelector('#clave1')).value;
+          valor1 = (<HTMLInputElement>Swal.getPopup()!.querySelector('#valor1')).value;
+          clave2 = (<HTMLInputElement>Swal.getPopup()!.querySelector('#clave2')).value;
+          valor2 = (<HTMLInputElement>Swal.getPopup()!.querySelector('#valor2')).value;
+          clave3 = (<HTMLInputElement>Swal.getPopup()!.querySelector('#clave3')).value;
+          valor3 = (<HTMLInputElement>Swal.getPopup()!.querySelector('#valor3')).value;
+
+          if (!altura || !peso || !temperatura || !presion) {
+            Swal.showValidationMessage(`Cargue historia clinica! (Los parametros obligatorios)`)
+          }
+
+          if(clave1 && valor1)
+          {
+            otros.push({clave:clave1, valor:valor1});
+          }
+          if(clave2 && valor2)
+          {
+            otros.push({clave:clave2, valor:valor2});
+          }
+          if(clave3 && valor3)
+          {
+            otros.push({clave:clave3, valor:valor3});
+          }
+          return { altura: altura, peso: peso, temperatura:temperatura, presion:presion, otros:otros }
+        }
+      }).then(resultado => {
+
+        // this.firestore.actualizar('turnos', turno.id, turno).then(()=>{
+         
+        // })
+
+        // this.firestore.obtenerById("usuariosClinica",turno.idPaciente).toPromise().then(async(ingreso)=>{
+        //      this.firestore.obtenerById("usuariosClinica",turno.idPaciente).toPromise().then(async(esp)=>{
+        //       let paciente:any = ingreso?.data()
+        //       let especialista:any= esp?.data()
+        //       console.log(paciente);
+        //       paciente.historiaClinica=
+        //       this.firestore.actualizar('usuariosClinica',turno.idPaciente,paciente)
+        //       this.firestore.actualizar('usuariosClinica',turno.idEspecialista,especialista).then(()=>{
+          this.firestore.actualizar('turno', turno.id, turno).then(()=>{
+
+                  this.historiaClinica.crearHistoriaMedica(turno, resultado.value!.altura, resultado.value!.peso, resultado.value!.temperatura, resultado.value!.presion, resultado.value!.otros);
+              Swal.fire('Historia clinica cargada!');
+            })
+      
+        //      })
+        //  })
+        this.PantallaCarga();
+
+        setTimeout(() => {
+          this.SacarPantallaCarga()
+         }, 2000);
+      // })
     });
-  }
+  })
+}
 
   filtrar()
   {
@@ -181,4 +314,16 @@ export class ListaTurnosEspecialistaComponent implements OnInit {
   {
     this.mostrarResenia.emit(turno);
   }
+
+  PantallaCarga(){
+    var x = window.scrollX;
+        var y = window.scrollY;
+        window.onscroll = function(){ window.scrollTo(x, y) };
+     this.carga=true
+  }
+  
+   SacarPantallaCarga(){
+        window.onscroll = function(){ };
+        this.carga=false
+      }
 }

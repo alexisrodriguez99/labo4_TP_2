@@ -1,0 +1,33 @@
+<button class="btn btn-primary" (click)="volver()">Volver</button>
+<button class="btn btn-success" (click)="Descargar()">Descargar</button>
+<br>
+<!-- <button *ngIf="mostrarTabla" class="btn btn-primary" (click)="MostrarGrafico()">Mostrar Grafico</button>
+<button *ngIf="mostrarGrafico" class="btn btn-primary" (click)="MostrarTabla()">Mostrar Tabla</button> -->
+
+<div id="htmlData">
+  <div *ngIf="mostrarTabla">
+    <table class="table table-light mydatatable">
+      <thead>
+        <th>
+          Fecha
+        </th>
+        <th>
+          Cantidad de turnos
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listadoDias">
+          <td>
+            {{item.fecha}}
+          </td>
+          <td>
+            {{item.cant}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="mostrarGrafico">
+    <div [chart]="chart"></div>
+  </div>
+</div>

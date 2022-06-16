@@ -2,6 +2,7 @@ import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FirestoreService } from 'src/app/componentes/services/firestore.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-especialidades',
@@ -13,7 +14,7 @@ export class EspecialidadesComponent implements OnInit {
   especialidadSelecionada:string="";
   listadoPaises:any;
   especialidadAgregada:any=""
-  constructor(private fire:FirestoreService, private afs:AngularFirestore ) { }
+  constructor(private fire:FirestoreService, private afs:AngularFirestore,private router: Router ) { }
 
   ngOnInit(): void {
      this.traerTodasEspecialidades()
@@ -50,5 +51,8 @@ this.listadoPaises.push(unRepartidor.payload.doc.data());
       this.especialidadAgregada="";
       // this.route.navigate(['bienvenido']);
      });
+  }
+  pacientes(){
+    this.router.navigateByUrl('/listaEspecialista');
   }
 }

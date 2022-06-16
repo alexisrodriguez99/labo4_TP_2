@@ -1,6 +1,6 @@
 <h4>Filtrar Turnos:</h4>
 <input type="text" [(ngModel)]="stringFiltro" ><button class="btn btn-primary" (click)="filtrar()">Filtrar</button><button class="btn btn-info" (click)="limpiarFiltro()">Limpiar</button>
-<table class="table table-light mydatatable">
+<table class="table   mydatatable">
   <thead>
     <th>
       Paciente
@@ -22,31 +22,33 @@
     </th>
   </thead>
   <tbody>
-    <tr *ngFor="let turno of turnosFiltrados">
-      <td>
-         {{turno.idPaciente | nombreUsuario:listadoPacientes}} 
-      </td>
-      <td>
-        {{turno.especialidad}}
-      </td>
-      <td>
-         {{turno.fechaCreacion | formatoFecha}} 
-      </td>
-      <td>
-        {{turno.hora}}
-      </td>
-      <td>
-        {{turno.estado}}
-      </td>
-      <td>
-        <div class="row">
-          <button *ngIf="turno.estado == 'pendiente'" class="btn btn-danger" (click)="cancelarTurno(turno)">Cancelar</button>
-          <button *ngIf="turno.estado == 'pendiente'" class="btn btn-danger" (click)="rechazarTurno(turno)">Rechazar</button>
-          <button *ngIf="turno.estado == 'pendiente'" class="btn btn-success" (click)="aceptarTurno(turno)">Aceptar</button>
-          <button *ngIf="turno.estado == 'aceptado'" class="btn btn-success" (click)="finalizarTurno(turno)">Finalizar</button>
-          <button *ngIf="turno.resenia" class="btn btn-info" (click)="verResenia(turno)">Resenia</button>
-        </div>
-      </td>
-    </tr>
+    <tr *ngFor="let turno of turnosFiltrados" [appEstadoTurno]="turno.estado">
+           <td>
+            {{turno.idPaciente | nombreUsuario:listadoPacientes}} 
+          </td>
+          <td>
+            {{turno.especialidad}}
+          </td>
+          <td>
+            {{turno.fechaCreacion | formatoFecha}} 
+          </td>
+          <td>
+            {{turno.hora}}
+          </td>
+          <td>
+            {{turno.estado}}
+          </td>
+          <td>
+            <div class="row">
+              <button *ngIf="turno.estado == 'aceptado'" class="btn btn-danger" (click)="cancelarTurno(turno)">Cancelar</button>
+              <button *ngIf="turno.estado == 'pendiente'" class="btn btn-danger" (click)="rechazarTurno(turno)">Rechazar</button>
+              <button *ngIf="turno.estado == 'pendiente'" class="btn btn-success" (click)="aceptarTurno(turno)">Aceptar</button>
+              <button *ngIf="turno.estado == 'aceptado'" class="btn btn-success" (click)="finalizarTurno(turno)">Finalizar</button>
+              <button *ngIf="turno.resenia" class="btn btn-info" (click)="verResenia(turno)">Resenia</button>
+            </div>
+          </td> 
+     </tr>
   </tbody>
 </table>
+
+<div id="carga" *ngIf="carga" ><img src="/assets/img/carga3.svg"> </div>

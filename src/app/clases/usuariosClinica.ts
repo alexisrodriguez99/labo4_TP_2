@@ -10,7 +10,7 @@ export interface UsuariosClinica {
     img1: string;
     img2?: string;
     obraSocial?: string;
-    especialidad?: [];
+    historiaClinica?: [];
     permiso?:boolean;
 
    // fotoPelicula:string;

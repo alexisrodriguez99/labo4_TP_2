@@ -12,7 +12,8 @@ export interface Especialista {
     permiso:boolean;
     horario?: {empieza:string, termina:string}, // inicio de la jornada, fin de la jornada
     // diasLaborables:string[], // de lunes a sabado..
-  
+    historiaClinica?: [];
+
     diasLaborables?:any;
    // fotoPelicula:string;
  }

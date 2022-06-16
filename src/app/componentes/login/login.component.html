@@ -75,7 +75,7 @@
                                 </div> -->
                                 <div class="col-lg-6 login-btm login-button">
 
-                                    <table  >
+                                    <table >
                                         <tr>
                                             <!--ADMIN-->
                                             <td>
@@ -87,7 +87,14 @@
                                                                                     <!--ESPECIALISTAS-->
 
                                         <tr>
-                                            <td>
+                                            
+                                                <td *ngFor="let doctor of listadoEspecialistas" (click)="esp(doctor.mail,doctor.contrasenia)" >
+                                                    <div *ngIf="doctor.mail=='xogeji6440@sceath.com' || doctor.mail=='bmurrayj_r541f@yefx.info'" style="background-color: rgb(0, 81, 255);" class="redondo">
+                                                    <img [src]="doctor.img1" class="center"   width="50" height="50"    />
+                                                    </div>
+                                                </td>
+                                           
+                                            <!-- <td>
                                                 <div   style="background-color: rgb(0, 81, 255);  " (click)="esp1()"  class="redondo">
                                                     <img src="/assets/img/esp1.png" class="center"   width="50" height="50"    />
                                                 </div>
@@ -96,12 +103,17 @@
                                                 <div   style="background-color: rgb(0, 81, 255);  " (click)="esp2()"  class="redondo">
                                                     <img src="/assets/img/esp2.png" class="center"   width="50" height="50"    />
                                                 </div>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                                                                     <!--PACIENTE-->
 
                                         <tr>
-                                            <td>
+                                            <td *ngFor="let paciente of listadoPacientes" (click)="pac(paciente.mail,paciente.contrasenia)" >
+                                                <div *ngIf="paciente.mail=='mewaka5610@tsclip.com' || paciente.mail=='jamite8226@about27.com' || paciente.mail=='terim34041@steamoh.com'" style="background-color: rgb(51, 255, 0);" class="redondo">
+                                                <img [src]="paciente.img1" class="center"   width="50" height="50"    />
+                                                </div>
+                                            </td>
+                                            <!-- <td>
                                                 <div   style="background-color: rgb(51, 255, 0);  " (click)="unJugador()"  class="redondo">
                                                     <img src="/assets/img/paciente1.png" class="center"   width="50" height="50"    />
                                                 </div>
@@ -115,7 +127,7 @@
                                                 <div   style="background-color: rgb(51, 255, 0);  " (click)="paciente3()"  class="redondo">
                                                     <img src="/assets/img/paciente3.png" class="center"   width="50" height="50"    />
                                                 </div>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                     </table>
                               </div>

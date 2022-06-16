@@ -25,7 +25,12 @@ export class TurnoService {
   }
 
    
-
+traerTodosReportes(){
+  return this.traerTodos().pipe(
+    map(turnos => turnos.filter(
+      turno => turno.estado!="libre"))
+  );
+}
   traerTodosByEspecialista(idEspecialista:string)
   {
     return this.traerTodos().pipe(
@@ -47,5 +52,52 @@ export class TurnoService {
       map(turnos => turnos.filter(
         turno => turno.estado!="libre"))
     );
+  }
+  traerEntreFechas(desde:number, hasta:number,tipofecha?:string)
+  {
+    let reference
+    if(tipofecha){
+      reference = this.afs.collection('turno', ref => ref.where(tipofecha, '>=', desde).where(tipofecha, '<=', hasta));
+    }
+    else{
+      reference = this.afs.collection('turno', ref => ref.where('fechaTurnoPedido', '>=', desde).where('fechaTurnoPedido', '<=', hasta));
+    }
+    return reference.snapshotChanges().pipe(
+      map(actions =>  actions.map(a => a.payload.doc.data() as Turno))
+    ).pipe(
+      map(turnos => turnos.filter(
+        turno =>  turno.estado!="libre"))
+    );
+  }
+
+  traerFechaDesde(desde:number,tipofecha?:string)
+  {
+    let reference
+    if(tipofecha){
+      reference = this.afs.collection('turno', ref => ref.where(tipofecha, '>=', desde));
+    }
+    else{
+      reference = this.afs.collection('turno', ref => ref.where('fechaTurnoPedido', '>=', desde));
+    }
+    return reference.snapshotChanges().pipe(
+      map(actions =>  actions.map(a => a.payload.doc.data() as Turno))
+    ).pipe(
+      map(turnos => turnos.filter(
+        turno =>  turno.estado!="libre"))
+    );
+  }
+
+  traerFechaHasta(hasta:number,tipofecha?:string)
+  {
+    let reference
+    if(tipofecha){
+      reference = this.afs.collection('turno', ref => ref.where(tipofecha, '<=', hasta));
+    }
+    else{
+      reference = this.afs.collection('turno', ref => ref.where('fechaTurnoPedido', '<=', hasta));
+    }
+    return reference.snapshotChanges().pipe(
+      map(actions =>  actions.map(a => a.payload.doc.data() as Turno))
+    )
   }
 }

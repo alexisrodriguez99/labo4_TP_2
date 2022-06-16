@@ -38,6 +38,19 @@ import { AltaModule } from './componentes/alta/alta.module';
 import { ListaTurnosAdminComponent } from './listados/lista-turnos-admin/lista-turnos-admin.component';
 import { AdminTurnosComponent } from './componentes/turnos/admin-turnos/admin-turnos.component';
 import { OrdenarPorDiaPipe } from './pipes/ordenar-por-dia.pipe';
+import { FormatoHoraPipe } from './pipes/formato-hora.pipe';
+import { HistoriaClinicaComponent } from './listados/historia-clinica/historia-clinica.component';
+import { PacientesComponent } from './listados/pacientes/pacientes.component';
+import { ReporteTurnosEspecialidadComponent } from './componentes/reportes/reporte-turnos-especialidad/reporte-turnos-especialidad.component';
+import { ReportesComponent } from './admin/reportes/reportes.component';
+import { ChartModule } from 'angular-highcharts';
+import { ReporteTurnosDiasComponent } from './componentes/reportes/reporte-turnos-dias/reporte-turnos-dias.component';
+import { ReporteTurnosMedicoComponent } from './componentes/reportes/reporte-turnos-medico/reporte-turnos-medico.component';
+import { ReporteTurnosFinalizadosComponent } from './componentes/reportes/reporte-turnos-finalizados/reporte-turnos-finalizados.component';
+import { ReporteLogsComponent } from './componentes/reportes/reporte-logs/reporte-logs.component';
+import { EstadoTurnoDirective } from './directivas/estado-turno.directive';
+import { NavHoverDirective } from './directivas/nav-hover.directive';
+import { FechaDirective } from './directivas/fecha.directive';
 
 @NgModule({
   declarations: [
@@ -66,8 +79,21 @@ import { OrdenarPorDiaPipe } from './pipes/ordenar-por-dia.pipe';
     ListaTurnosAdminComponent,
     AdminTurnosComponent,
     OrdenarPorDiaPipe,
+    FormatoHoraPipe,
+    HistoriaClinicaComponent,
+    PacientesComponent,
+    ReporteTurnosEspecialidadComponent,
+    ReportesComponent,
+    ReporteTurnosDiasComponent,
+    ReporteTurnosMedicoComponent,
+    ReporteTurnosFinalizadosComponent,
+    ReporteLogsComponent,
+    EstadoTurnoDirective,
+    NavHoverDirective,
+    FechaDirective,
   ],
   imports: [     
+    ChartModule ,
     CommonModule,
     BrowserAnimationsModule,
     BrowserModule,

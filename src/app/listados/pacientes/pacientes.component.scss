@@ -1,0 +1,77 @@
+.img-photo-secondary {
+    width: 7rem;
+    position: absolute;
+    top: 40%;
+  }
+  
+  .title {
+    font-weight: bold;
+  }
+  
+  .container-filter {
+    display: flex;
+    flex-direction: row-reverse;
+    text-align: center;
+  }
+  
+  .filter {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  #btn-filter, #btn-refresh {
+    width: 10%;
+    margin-left: 0.5rem;
+    margin-right: 0;
+  }
+  
+  
+  #btn-back {
+    background-color: transparent;
+    border: none;
+    margin-left: 64rem;
+    height: 2.6rem;
+    width: 2.5rem;
+  }
+  
+  #btn-download {
+    margin-left: 59.5rem;
+    width: 7rem;
+  }
+  
+  #title{
+    font-family: sans-serif;
+  }
+  .container-esp {
+    cursor: pointer;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: white;
+    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+    height: 10rem;
+    width: 15rem;
+  }
+  // .container-esp:hover,
+  // .card:hover {
+  //   background-color: rgba(36, 36, 36, 0.76);
+  //   color: white;
+  // }
+  .img-esp {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+    margin-top: 5px;
+  }
+  .row-conEspecialista {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .row-paciente:hover,
+  .container-esp:hover{
+    background-color: rgba(36, 36, 36, 0.76);
+    color: white;
+  }

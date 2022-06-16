@@ -6,29 +6,28 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li class="nav-item active" [appNavHover]="rojo" >
           <a class="nav-link" routerLink="/alta" *ngIf="(logedUser == false)  ; else noLoged">Registrarse <span class="sr-only"> </span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active" [appNavHover]="azul">
           <a class="nav-link" routerLink="/alta" *ngIf="(usuarioActual.perfil == 'admin') && (logedUser == true) ; else noLoged">Registrar <span class="sr-only"> </span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active" [appNavHover]="verde">
           <a class="nav-link" routerLink="/listaEspecialista" *ngIf="(usuarioActual.perfil == 'admin') && (logedUser == true) ; else noLoged">Usuarios <span class="sr-only"> </span></a>
         </li>
-        <li class="nav-item active" *ngIf="logedUser == true; else noLoged">
+        <li class="nav-item active" *ngIf="logedUser == true; else noLoged" [appNavHover]="amarillo">
           <a class="nav-link" (click)="logOut()">Salir</a>
         </li>
-        <li class="nav-item active" *ngIf="logedUser == false; else noLoged">
+        <li class="nav-item active" *ngIf="logedUser == false; else noLoged" [appNavHover]="rosa">
           <a class="nav-link" routerLink="/login"  >Acceder</a>
         </li>
 
         <ng-template #noLoged>
-          <li class="nav-item active" hidden>
+          <li class="nav-item active" hidden [appNavHover]="rojo">
             <a class="nav-link" routerLink="/login"  >acceder</a>
           </li>
         </ng-template>
-
-         
+          
       </ul>
        
     </div>

@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { FirestoreService } from '../services/firestore.service';
 import Swal from 'sweetalert2';
+import { UsersService } from '../services/users.service';
+import { LogsClinica } from 'src/app/clases/logsClinica';
  
 @Component({
   selector: 'app-login',
@@ -15,9 +17,12 @@ export class LoginComponent implements OnInit {
   ajam:any;
   error:any;
   carga:boolean=false;
-  constructor(private authSvc:AuthService, private router:Router,private fs:FirestoreService) { }
+  listadoPacientes:any[] = [];
+  listadoEspecialistas:any[] = [];  constructor(private authSvc:AuthService, private router:Router,private fs:FirestoreService,private users: UsersService) { }
 
   ngOnInit(): void {
+    this.listadoPacientes = this.users.listadoPacientes;
+    this.listadoEspecialistas = this.users.listadoEspecialistas;
    }
   async onLogin(email:any,password:any){
 
@@ -37,6 +42,15 @@ export class LoginComponent implements OnInit {
 
 if(user.user.email=="admin@gmail.com"){
   this.router.navigateByUrl('/home');
+  this.fs.obtenerById("usuariosClinica",user.user.uid).toPromise().then(async(ingreso)=>{
+    this.ajam=ingreso?.data()
+    this.authSvc.usuarioIngresado=this.ajam;
+
+  let fecha = new Date();
+
+let log:LogsClinica = {idUsuario:this.authSvc.usuarioIngresado.id, fecha:fecha.getDate()+'/'+(fecha.getMonth()+1)+'/'+fecha.getFullYear(), hora:fecha.getHours()+':'+fecha.getMinutes()+':'+fecha.getSeconds(),mail:this.authSvc.usuarioIngresado.mail,nombre:'admin',apellido:'admin'};
+this.fs.crear('logsClinica', log);
+  })
 this.SacarPantallaCarga()
 }
 //alert(user);
@@ -66,9 +80,18 @@ this.SacarPantallaCarga()
          this.SacarPantallaCarga()
 
         console.log("soy un paciente");
-        let f = new Date();
-        this.fs.crear('logs',{ mensaje:'El usuario '+email.value+' ha inicado sesion el dia '+f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear() + ' a las ' + f.getHours()+':'+f.getMinutes()+':'+f.getSeconds()});
-       console.log("Entro");
+        // let f = new Date();
+        //this.fs.crear('logsClinica',{ mensaje:'El usuario '+email.value+' ha inicado sesion el dia '+f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear() + ' a las ' + f.getHours()+':'+f.getMinutes()+':'+f.getSeconds()});
+        // let fecha = new Date();
+
+        // let log:LogsClinica = {idUsuario:this.authSvc.usuarioIngresado.id, fecha:fecha.getDate()+'/'+(fecha.getMonth()+1)+'/'+fecha.getFullYear(), hora:fecha.getHours()+':'+fecha.getMinutes()+':'+fecha.getSeconds()};
+
+    //this.fs.crear('logsClinica', log);
+    let fecha = new Date();
+
+let log:LogsClinica = {idUsuario:this.authSvc.usuarioIngresado.id, fecha:fecha.getDate()+'/'+(fecha.getMonth()+1)+'/'+fecha.getFullYear(), hora:fecha.getHours()+':'+fecha.getMinutes()+':'+fecha.getSeconds(),mail:this.authSvc.usuarioIngresado.mail,nombre:this.authSvc.usuarioIngresado.nombre,apellido:this.authSvc.usuarioIngresado.apellido};
+this.fs.crear('logsClinica', log);
+        console.log("Entro");
       this.router.navigateByUrl('/home');
       }
       else if(this.ajam.perfil=="paciente"  && !user.user.emailVerified){
@@ -85,9 +108,13 @@ this.SacarPantallaCarga()
       else if(this.ajam.perfil=="especialista" && this.ajam.permiso==true){
          this.SacarPantallaCarga()
 
-let f = new Date();
-       this.fs.crear('logs',{ mensaje:'El usuario '+email.value+' ha inicado sesion el dia '+f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear() + ' a las ' + f.getHours()+':'+f.getMinutes()+':'+f.getSeconds()});
-      console.log("Entro");
+// let f = new Date();
+//        this.fs.crear('logs',{ mensaje:'El usuario '+email.value+' ha inicado sesion el dia '+f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear() + ' a las ' + f.getHours()+':'+f.getMinutes()+':'+f.getSeconds()});
+let fecha = new Date();
+
+let log:LogsClinica = {idUsuario:this.authSvc.usuarioIngresado.id, fecha:fecha.getDate()+'/'+(fecha.getMonth()+1)+'/'+fecha.getFullYear(), hora:fecha.getHours()+':'+fecha.getMinutes()+':'+fecha.getSeconds(),mail:this.authSvc.usuarioIngresado.mail,nombre:this.authSvc.usuarioIngresado.nombre,apellido:this.authSvc.usuarioIngresado.apellido};
+this.fs.crear('logsClinica', log);
+console.log("Entro");
      this.router.navigateByUrl('/home');
       }
       else if(this.ajam.perfil=="especialista" && this.ajam.permiso==false)
@@ -150,6 +177,14 @@ let f = new Date();
  esp2(){
   this.mail="bmurrayj_r541f@yefx.info";
   this.contrasenia="111111";
+ }
+ esp(mail:any,clave:any){
+  this.mail=mail;
+  this.contrasenia=clave;
+ }
+ pac(mail:any,clave:any){
+  this.mail=mail;
+  this.contrasenia=clave;
  }
   PantallaCarga(){
   var x = window.scrollX;

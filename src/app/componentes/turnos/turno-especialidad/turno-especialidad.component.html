@@ -2,9 +2,13 @@
     <div class="row">
       <h1 >Elegir especialidad:</h1>
       <div class="container-esp" *ngFor="let especialidad of listadoEspecialidades" (click)="elegirEspecialidad(especialidad.nombre)">
-         <div class="card-inner">
-          <div class="header" style="margin-top: 50px; font-size: xx-large;">{{ especialidad.nombre}}</div>
-        </div>
+          <div class="center">
+            <img class="img-esp" [src]="especialidad.foto" />
+
+            <div class="card-inner" style="margin-top: 20px; font-weight: 900;">
+              <div class="header" >{{ especialidad.nombre}}</div>
+            </div>
+          </div>
       </div>
     </div>
   </div>
