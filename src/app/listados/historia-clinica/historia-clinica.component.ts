@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./historia-clinica.component.scss']
 })
 export class HistoriaClinicaComponent implements OnInit {
-
+  verHistClinica:boolean=true;
   historiasClinicas:HistoriaClinica[] = [];
   historiasFiltradas:HistoriaClinica[]=[];
   listadoEspecialistas:any[] = [];
@@ -55,18 +55,23 @@ export class HistoriaClinicaComponent implements OnInit {
     {
       
       console.log('entra aca');
-      this.historiasFiltradas = this.listadoEspecialistas.slice();
+      this.historiasFiltradas = this.historiasClinicas.slice();
+console.log(this.historiasFiltradas)
 
       let indiceEliminar:number[]=[];
       this.historiasFiltradas.forEach((element, index) => {
-
+console.log(element)
         // Filtro por especialistas
         let especialista=false;
         for(let i = 0;i < this.listadoEspecialistas.length; i++)
         {
+          console.log(element.idEspecialista+' ; '+this.listadoEspecialistas[i].id)
+
+          console.log(this.listadoEspecialistas[i].nombre+' ; '+this.listadoEspecialistas[i].apellido )
+          console.log(this.stringFiltro )
           if(element.idEspecialista == this.listadoEspecialistas[i].id && (this.listadoEspecialistas[i].nombre.toLowerCase().includes(this.stringFiltro.toLowerCase()) || this.listadoEspecialistas[i].apellido.toLowerCase().includes(this.stringFiltro.toLowerCase())))
           {
-            especialista = true;
+             especialista = true;
             break;
           }
         }
@@ -90,7 +95,9 @@ export class HistoriaClinicaComponent implements OnInit {
   }
   async descargarPDF()
   {
-    this.pdf.descargarPdf('historialMedico_'+ this.authSvc.usuarioIngresado.apellido +'.pdf', 'divPDF');
+    this.verHistClinica=false
+     this.pdf.descargarPdf('historialMedico_'+ this.authSvc.usuarioIngresado.apellido +'.pdf', 'divPDF');
+    this.verHistClinica=true;
     // let tabla = this.armarTablaHistoria();
     // let docDefinition:any = {
     //   header: {

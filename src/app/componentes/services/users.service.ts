@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FirestoreService } from './firestore.service';
+import { TurnoService } from './turno.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +9,16 @@ export class UsersService {
 
   public listadoEspecialistas:any[] = [];
   public listadoPacientes:any[] = [];
+  public listadoPacientesTurnos:any[] = [];
   public listadoAdministradores:any[] = [];
   public listadoUsuarios:any[]=[];
 
-  constructor(private firestore:FirestoreService) {
+  constructor(private firestore:FirestoreService,private turno:TurnoService) {
 
     this.firestore.obtenerTodos('usuariosClinica').subscribe((usuariosSnapshot) => {
 
       this.listadoPacientes = [];
+      this.listadoPacientesTurnos = [];
       this.listadoAdministradores = [];
       this.listadoEspecialistas = [];
       this.listadoUsuarios = [];
@@ -44,6 +47,7 @@ export class UsersService {
         if(data.perfil == 'paciente')
         {
           this.listadoPacientes.push(data);
+          // let pacienteXturno=this.listadoPacientes;
 
           // this.listadoPacientes.push({
           //   id:data.id,
@@ -56,6 +60,15 @@ export class UsersService {
           //   foto2:data.foto2,
           //   obraSocial:data.obraSocial,
           //   mail:data.mail});
+
+          // pacienteXturno.forEach(historia => {
+          //   this.turno.traerTodosByIdTurno(historia.idTurno).subscribe(elTurno => {
+          //     // historia.turno={hora:elTurno[0].hora,dia:elTurno[0].fechaCreacion}
+          //     // historia.turnoEntero=elTurno[0];
+          //     this.listadoPacientesTurnos.push({
+
+          //     })
+          //   })})
         }
         if(data.perfil == 'administrador')
         {

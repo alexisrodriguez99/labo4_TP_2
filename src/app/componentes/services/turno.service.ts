@@ -24,7 +24,10 @@ export class TurnoService {
     )
   }
 
-   
+   todosTurnos(documentId:any){
+    return this.afs.collection('turno').doc(documentId).get();
+
+   }
 traerTodosReportes(){
   return this.traerTodos().pipe(
     map(turnos => turnos.filter(
@@ -44,6 +47,13 @@ traerTodosReportes(){
     return this.traerTodos().pipe(
       map(turnos => turnos.filter(
         turno => turno.idPaciente == idPaciente))
+    );
+  }
+  traerTodosByIdTurno(idTurno:string)
+  {
+    return this.traerTodos().pipe(
+      map(turnos => turnos.filter(
+        turno => turno.id == idTurno))
     );
   }
   traerTodosByAdmin()

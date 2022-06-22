@@ -3,7 +3,7 @@
     <div class="jumbotron fondo">
       <div class="container">
         <br><br>
-        <h1 class="display-3">Pacientes, Historias Clinicas</h1>
+        <h1 class="display-3">Descargar Excel de Usuarios:</h1>
         <br><br>
       </div>
     </div>
@@ -13,11 +13,25 @@
         <div class="row row-conEspecialista">
             <h1>Elegir paciente:</h1>
               <ng-container *ngFor="let paciente of listadoPacietnes">
-                <div class="container-esp" (click)="verUsuario(paciente)">
+                <div class="container-paciente" (click)="descargarExcel(paciente)">
                   <div class="card-inner" >
                     <div class="header">
                       <img [src]="paciente.img1" class="img-esp" />
                       <h3>{{paciente.nombre}} {{paciente.apellido}}</h3>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+          </div>
+
+          <div class="row row-conEspecialista">
+            <h1>Elegir Especialista:</h1>
+              <ng-container *ngFor="let esp of listadoEspecialistas">
+                <div class="container-esp" (click)="descargarExcel(esp)">
+                  <div class="card-inner" >
+                    <div class="header">
+                      <img [src]="esp.img1" class="img-esp" />
+                      <h3>{{esp.nombre}} {{esp.apellido}}</h3>
                     </div>
                   </div>
                 </div>
@@ -33,11 +47,14 @@
       <h1>Elegir paciente:</h1>
         <ng-container *ngFor="let paciente of misPacientes">
           <div class="container-esp" (click)="verUsuario(paciente)">
-            <div class="card-inner" >
-              <div class="header">
-                <img [src]="paciente.img1" class="img-esp" />
-                <h3>{{paciente.nombre}} {{paciente.apellido}}</h3>
-              </div>
+            <div class="center">
+
+                  <div class="card-inner" >
+                    <div class="header">
+                      <img [src]="paciente.img1" class="img-esp" />
+                      <h3>{{paciente.nombre}} {{paciente.apellido}}</h3>
+                    </div>
+                  </div>
             </div>
           </div>
         </ng-container>
@@ -109,7 +126,16 @@
               Especialista
             </th>
             <th>
-              Fecha
+              Fecha Historia Clinica
+            </th>
+            <th>
+              Hora del turno
+            </th>
+            <th>
+              Fecha del turno
+            </th>
+            <th>
+              Especialidad
             </th>
             <th>
               Ver Detalles
@@ -126,16 +152,31 @@
                   {{historia.fecha | fechaProgramada}}
                 </td>
                 <td>
+                  {{historia.turnoEntero?.hora }}
+                </td>
+                <td>
+                  {{historia.turnoEntero?.fechaCreacion | fechaProgramada}}
+                </td>
+                <td>
+                  {{historia.turnoEntero?.especialidad }}
+                </td>
+                <td>
                   <div class="row">
-                    <button class="btn btn-info" (click)="verDetalles(historia)">Ver Detalles</button>
+                    <button class="btn btn-primary" (click)="verDetalles(historia)">Ver Detalles</button>
+                    <button *ngIf="historia.turnoEntero?.resenia" class="btn btn-info" (click)="verResenia(historia.turnoEntero)">Resenia</button>
+
+                    
                   </div>
                 </td>
               </tr>
             </ng-container>
           </tbody>
         </table>
+       
       </div>
-    </div>
+    </div> <div class="col-3">
+                      <app-ver-resenia *ngIf="mostrandoResenia" [turno]="turnoPaResenia" (cerrar)="dejarDeMostrarResenia($event)"></app-ver-resenia>
+                   </div>
     <hr>
   </div> <!-- /container -->
   </main>

@@ -70,11 +70,11 @@
     </thead>
     <tbody>
       <tr>
-        <td *ngIf="!turno.comentarioAdmin">
+        <td *ngIf="!turno?.comentarioAdmin">
           El admin no dejo comentario
         </td>
-        <td *ngIf="turno.comentarioAdmin">
-          {{turno.comentarioAdmin}}
+        <td *ngIf="turno?.comentarioAdmin">
+          {{turno?.comentarioAdmin}}
         </td>
         <!-- <td *ngIf="!turno.comentarioEspecialista">
           El especialista no dejo comentario
@@ -104,11 +104,11 @@
       </thead>
       <tbody>
       <tr>
-           <td *ngIf="!turno.comentarioEspecialista">
+           <td *ngIf="!turno?.comentarioEspecialista">
             El especialista no dejo comentario
           </td>
-          <td *ngIf="turno.comentarioEspecialista">
-            {{turno.comentarioEspecialista}}
+          <td *ngIf="turno?.comentarioEspecialista">
+            {{turno?.comentarioEspecialista}}
           </td>
        </tr>
     </tbody>
@@ -120,11 +120,11 @@
     </thead>
     <tbody>
       <tr>
-        <td *ngIf="!turno.comentarioPaciente">
+        <td *ngIf="!turno?.comentarioPaciente">
           El paciente no dejo comentario
         </td>
-        <td *ngIf="turno.comentarioPaciente">
-          {{turno.comentarioPaciente}}
+        <td *ngIf="turno?.comentarioPaciente">
+          {{turno?.comentarioPaciente}}
         </td>
        </tr>
     </tbody>
@@ -136,11 +136,11 @@
     </thead>
     <tbody>
       <tr>
-        <td *ngIf="!turno.diagnostico">
+        <td *ngIf="!turno?.diagnostico">
           No se dejo diagnostico
         </td>
-        <td *ngIf="turno.diagnostico">
-          {{turno.diagnostico}}
+        <td *ngIf="turno?.diagnostico">
+          {{turno?.diagnostico}}
         </td>
        </tr>
     </tbody>

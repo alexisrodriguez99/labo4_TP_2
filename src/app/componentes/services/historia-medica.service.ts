@@ -12,10 +12,22 @@ import Swal from 'sweetalert2';
   providedIn: 'root'
 })
 export class HistoriaMedicaService {
+  public listadoHistorial:any[] = [];
 
   referenciaColeccion:AngularFirestoreCollection;
   constructor(private router:Router,  private firestore:FirestoreService, private authSvc:AuthService, private afs:AngularFirestore) {
     this.referenciaColeccion = this.afs.collection('historiasMedicas', ref => ref.orderBy('fecha', 'desc'));
+    
+    this.firestore.obtenerTodos('historiasMedicas').subscribe((usuariosSnapshot) => {
+      this.listadoHistorial = [];
+      usuariosSnapshot.forEach((usuarioData: any) => {
+        let data = usuarioData.payload.doc.data();
+        this.listadoHistorial.push(data);
+
+      })
+    })
+
+
    }
 
    crearHistoriaMedica(turno:Turno, altura:number, peso:number, temperatura:number, presion:number, otros:any)
@@ -46,10 +58,13 @@ export class HistoriaMedicaService {
        pacienteAgregar.historiaClinica=[]
        pacienteAgregar.historiaClinica.push(historiaMedica)
 
+       turno.historiaClinica=historiaMedica
+
                  especialistaAgregar.historiaClinica=[]
                  especialistaAgregar.historiaClinica.push(historiaMedica)
                  this.firestore.actualizar('usuariosClinica',turno.idEspecialista,especialistaAgregar);
                  this.firestore.actualizar('usuariosClinica',turno.idPaciente,pacienteAgregar);
+                 this.firestore.actualizar('turno',turno.id,turno);
        // agregar spinner
        console.log(historiaMedica)
 

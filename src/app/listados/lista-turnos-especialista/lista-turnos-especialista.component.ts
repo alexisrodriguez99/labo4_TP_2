@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class ListaTurnosEspecialistaComponent implements OnInit {
   turnosExistentes:any[] = [];
+  historialExistentes:any[] = [];
   turnosFiltrados:Turno[] = [];
 hola="aceptado"
   listadoPacientes:any[] = [];
@@ -24,9 +25,11 @@ hola="aceptado"
   carga:boolean=false;
 
   stringFiltro = '';
-  constructor(private authSvc:AuthService, private firestore:FirestoreService,private users:UsersService,private turno:TurnoService,private historiaClinica:HistoriaMedicaService) { }
+  constructor(private historial:HistoriaMedicaService ,private authSvc:AuthService, private firestore:FirestoreService,private users:UsersService,private turno:TurnoService,private historiaClinica:HistoriaMedicaService) { }
 
   ngOnInit(): void {
+    this.historialExistentes=this.historial.listadoHistorial;
+    console.log(this.historialExistentes)
     this.listadoPacientes = this.users.listadoPacientes;
     console.log(this.listadoPacientes);
 
@@ -251,12 +254,33 @@ hola="aceptado"
       console.log('entra aca');
       let indiceEliminar:number[]=[];
       this.turnosFiltrados = this.turnosExistentes.slice();
-
+      let num=2
+      let char='2'
+     
       this.turnosFiltrados.forEach((element, index) => {
+        // Filtro historial
+        let historial=false;
+        if(element.historiaClinica){
+          for(let i = 0;i < element.historiaClinica.otros.length; i++)
+          {
+            if(element.historiaClinica.otros[i].clave.toLowerCase().includes(this.stringFiltro.toLowerCase()) )
+            {
+              historial = true;
+              break;
+            }
+            else if(element.historiaClinica.peso.toLowerCase().includes(this.stringFiltro.toLowerCase()) || element.historiaClinica.altura.toLowerCase().includes(this.stringFiltro.toLowerCase()) || element.historiaClinica.presion.toLowerCase().includes(this.stringFiltro.toLowerCase())){
+              historial = true;
+              break;
+            }
+          }
+        }
+
+
         // Filtro por especialistas
         let especialista=false;
         for(let i = 0;i < this.listadoPacientes.length; i++)
         {
+          //console.log(this.listadoPacientes[i].historiaClinica)
           if(element.idPaciente == this.listadoPacientes[i].id && (this.listadoPacientes[i].nombre.toLowerCase().includes(this.stringFiltro.toLowerCase()) || this.listadoPacientes[i].apellido.toLowerCase().includes(this.stringFiltro.toLowerCase())))
           {
             especialista = true;
@@ -292,7 +316,7 @@ hola="aceptado"
           filtroEstado=true;
         }
 
-        if(!especialista && !especialidad && !filtroFecha && !filtroHorario && !filtroEstado)
+        if(!especialista && !especialidad && !filtroFecha && !filtroHorario && !filtroEstado && !historial)
         {
           console.log('me esta funcando el filtro', element);
           indiceEliminar.push(index);

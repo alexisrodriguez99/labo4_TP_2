@@ -1,3 +1,5 @@
+import { Turno } from "./turno";
+
 export interface HistoriaClinica {
   id:string,
   idPaciente:string,
@@ -11,5 +13,7 @@ export interface HistoriaClinica {
   otros?: {clave:string, valor:any}[],
   paciente?:any,
   especialista?:any,
+  turno?:any,
+  turnoEntero?:Turno
 
 }

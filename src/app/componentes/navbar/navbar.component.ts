@@ -5,6 +5,7 @@ import { UsuariosClinica } from '../../clases/usuariosClinica';
 import { Router } from '@angular/router';
 import { AltaRoutingModule } from '../alta/alta-routing.module';
 import { UsersService } from '../services/users.service';
+import { HistoriaMedicaService } from '../services/historia-medica.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -18,7 +19,7 @@ export class NavbarComponent implements OnInit,OnChanges {
  rosa='pink';
  azul='blue';
  amarillo='yellow';
-  constructor(private authServise: AuthService,private router: Router,private users:UsersService) { }
+  constructor(private authServise: AuthService,private router: Router,private users:UsersService, private historial:HistoriaMedicaService) { }
   ngOnInit(): void {
     this.estaLogeado();
     /*this.authServise.afAuth.user.subscribe(()=>{

@@ -7,7 +7,7 @@ import { Turno } from 'src/app/clases/turno';
   styleUrls: ['./ver-resenia.component.scss']
 })
 export class VerReseniaComponent implements OnInit {
-  @Input() turno!:Turno;
+  @Input() turno!:Turno | undefined;
   @Output() cerrar:EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 

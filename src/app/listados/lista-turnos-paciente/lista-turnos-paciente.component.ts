@@ -128,7 +128,22 @@ export class ListaTurnosPacienteComponent implements OnInit {
             break;
           }
         }
-
+        // Filtro historial
+        let historial=false;
+        if(element.historiaClinica){
+          for(let i = 0;i < element.historiaClinica.otros.length; i++)
+          {
+            if(element.historiaClinica.otros[i].clave.toLowerCase().includes(this.stringFiltro.toLowerCase()) )
+            {
+              historial = true;
+              break;
+            }
+            else if(element.historiaClinica.peso.toLowerCase().includes(this.stringFiltro.toLowerCase()) || element.historiaClinica.altura.toLowerCase().includes(this.stringFiltro.toLowerCase()) || element.historiaClinica.presion.toLowerCase().includes(this.stringFiltro.toLowerCase())){
+              historial = true;
+              break;
+            }
+          }
+        }
         // Filtro por especialidad
         let especialidad=false;
         if(element.especialidad.toLowerCase().includes(this.stringFiltro.toLowerCase()))
@@ -157,7 +172,7 @@ export class ListaTurnosPacienteComponent implements OnInit {
           filtroEstado=true;
         }
 
-        if(!especialista && !especialidad && !filtroFecha && !filtroHorario && !filtroEstado)
+        if(!especialista && !especialidad && !filtroFecha && !filtroHorario && !filtroEstado && !historial)
         {
           indiceEliminar.push(index);
         }

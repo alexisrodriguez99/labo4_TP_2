@@ -3,7 +3,7 @@
 <div class="row">
   <button style="margin-left: 5px;" class="btn btn-primary" (click)="descargarPDF()">Descargar PDF</button>
 </div>
-<table class="table table-light mydatatable">
+<!-- <table class="table table-light mydatatable">
   <thead>
     <th>
       Especialista
@@ -31,9 +31,8 @@
       </td>
     </tr>
   </tbody>
-</table>
-
-<div  hidden id="divPDF" class="pdf"  >
+</table> -->
+ <div   id="divPDF" class="pdf"  >
   <!-- <div class="container">
     <div class="row">
       <div class="col-3">
@@ -79,7 +78,6 @@
     </div>
   </div>
 
-
   <table class="table" id="tables" >
     <thead>
       <th>
@@ -102,6 +100,9 @@
       </th>
       <th>
         Presion
+      </th>
+      <th *ngIf="verHistClinica==true">
+        Ver Detalles
       </th>
       <th></th>
     </thead>
@@ -128,8 +129,13 @@
           <td>
             {{historia.presion}}
           </td>
+          <td *ngIf="verHistClinica==true">
+            <div class="row">
+              <button class="btn btn-info" (click)="verDetalles(historia)">Ver Detalles</button>
+            </div>
+          </td>
       </tr>
     </tbody>
   </table>
-
+ 
 </div>
